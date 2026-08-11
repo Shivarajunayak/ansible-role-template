@@ -1,0 +1,797 @@
+{
+    "name" : "hmcl-cv-fw-periodic-app-screen",
+    "signalCatalogArn" : "arn:aws:iotfleetwise:${local.aws_region}:${local.aws_account_id}:signal-catalog/hmcl-cv-${local.environment}-fw-signal-catalog",
+    "targetArn" : "arn:aws:iotfleetwise:${local.aws_region}:${local.aws_account_id}:fleet/HMCL-VEHICLES",
+    "dataDestinationConfigs" : [
+      {
+        "timestreamConfig" : {
+          "timestreamTableArn" : "arn:aws:timestream:${local.aws_region}:${local.aws_account_id}:database/fwsim-iot-fw-simulator-database/table/fwsim-iot-fw-simulated-data-table", // Ask to Paritosh (AWS) if timestream db to be used
+          "executionRoleArn" : "${dependency.iam_simulator_role.outputs.simulator_role_arn}"
+        }
+      }
+    ],
+    "collectionScheme" : {
+      "timeBasedCollectionScheme" : {
+        "periodMs" : 10000
+      }
+    },
+    "dataExtraDimensions" : [
+      "hmcl.tenantId",
+      "hmcl.virtualId"
+    ],
+    "diagnosticsMode" : "OFF",
+    "signalsToCollect" : [
+      {
+        "name" : "hmcl.ice.ecm.can0.vehicle_speed_high_res",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.throttle_position_value",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.remote_immo_mobilize_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.engine_speed",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.engine_run_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.throttle_grip_percentage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.side_stand_sensor_fault_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.side_stand_sensor_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.roll_over_detection_fault_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.roll_over_detection",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.gear_position",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.shift_gear_position",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.engine_temperature",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.engine_temperature_fault_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ecm.can0.distance_travelled_with_mil",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.abs.can0.rear_wheel_speed_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.abs.can0.rear_wheel_speed",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.abs.can0.front_wheel_speed_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.abs.can0.front_wheel_speed",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.abs.can0.abs_front_wheel_pressure_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.abs.can0.high_speed_resolution_1",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.abs.can0.abs_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.abs.can0.abs_telltale_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ic.can0.odo_reading",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ic.can0.fuel_percentage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.ic.can0.functional_diag_req",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.tcu.can0.event_notification",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.tcu.can0.tcu_cloud_connectivity_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.tcu.can0.tcu_cmd_post_ble_auth",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.tcu.can0.user_speed_limit",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ice.tcu.can0.bluetooth_function_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.pitch_angle",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.gyro_z",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.gyro_y",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.gyro_x",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.accel_z",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.accel_y",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.accel_x",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.wakeup_reason",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.shutdown_reason",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.tcu_power_state",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.int_battery_charge_voltage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.int_battery_charge_percentage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.movement_alert",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.fall_down_alert",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.panic_alert",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.aux_battery_low_alert",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.low_fuel_alert",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.accident_alert",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.aux_battery_removal_alert",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.ignition_alert",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.distance_from_parking",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.main_voltage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.dig_out_2",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.dig_out_1",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.dig_in_3",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.dig_in_2",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.gps_fix",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.gps_valid",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.sats_in_view",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.sats_in_use",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.vdop",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.pdop",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.hdop",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.cog",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.altitude",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.gps_speed",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.longitude",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.latitude",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.vehicle_theft_alert",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.common.tcu.vcan0.overspeed_alert",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.tcu_wakeup_ack",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.vcu_wup_ack",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.ready_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.throttle_percentage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.brake_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.kill_switch_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.side_stand_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.speed_rear_wheel",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.thermal_runaway_warning",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.battery_slot_identity_rear",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.battery_slot_identity_front",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.total_distance",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.avg_energy_consumption",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.temperature_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.ambient_temperature",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.charger_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.trip_mileage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.remaining_range",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.charger_identity",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.charger_state",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.vcu_auth_signal",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms.can0.bms_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms.can0.battery_pack_temperature",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms.can0.soc_user_percentage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms.can0.soh_percentage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms.can0.battery_charging_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms.can0.estimated_charging_time",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.estimated_output_torque",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.rotor_speed",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.ntc2_temperature",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.ntc1_temperature",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.heat_sink_temperature",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.mcu_dc_current",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.mcu_dc_link_voltage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.mcu_phase_voltage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.mcu_phase_current",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.mcu_torque_current",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.mcu_flux_current",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms1.can0.bms1_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms1.can0.bms1_soc_user_percentage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms1.can0.bms1_soe_percentage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms1.can0.bms1_soh_percentage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms1.can0.bms1_battery_pack_temperature",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms2.can0.bms2_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms2.can0.bms2_soc_user_percentage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms2.can0.bms2_soe_percentage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms2.can0.bms2_soh_percentage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.bms2.can0.bms2_battery_pack_temperature",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.boost_mode_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.immo_signal_ack",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.user_profile_ack",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.pre_req_pin_openshort_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.Charger_timeout_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.kl15feedback_missing_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.charger_relay_openshort_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.generic_bms_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.wubms1_pin_openshort_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.wubms2_pin_openshort_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.dcdc_en_pin_openshort_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.kl15_pin_openshort_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.battery1_cont_pin_openshort_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.pres_drop_after_sup_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.battery2_cont_pin_openshort_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.dclink_down_during_su_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.mcu_generic_fault_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.asil_tps_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.asil_frontbrake_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.asil_rearbrake_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.asil_sdst_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.individual_bms_msg_tio_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.precharge_fail_during_su_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.wb_status_during_startup_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.bms_auth_failed_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.bms_msg_timeout_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.vcu.can0.bms_status_msg_timeout_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.position_sensor_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.can_bus_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.temperature_derating_start3",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.temperature_derating_start2",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.temperature_derating_start1",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.sensor_calibration_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.torque_set_point_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.temperature_sensor_error3",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.temperature_sensor_error2",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.temperature_sensor_error1",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.max_overspeeding_reverse",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.motor_overspeeding",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.max_overspeeding_forward",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.dc_high_voltage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.temperature_derating_cutoff",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.dc_overcurrent_generating",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.dc_overcurrent_motoring",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.phase_connection_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.powerstage_monitoring_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.current_setpoint_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.current_sensor_error",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.max_mcu_temperature",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.dc_overvoltage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.dc_undervoltage",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.mcu.can0.motor_stalling",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.ehl.can0.ehl_command",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.ic.can0.ic_vehicle_state_change_request",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.ic.can0.panic_cancel_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.ic.can0.cluster_speed",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.ic.can0.odo_reading",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.tcu_wakeup",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.tcu_vehicle_state_change_request",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.overspeed_thresold",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.battery1_serial_id_ack",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.battery2_serial_id_ack",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.aux_battery_voltage_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.tcu_cloud_connectivity_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.tcu_cmd_post_ble_auth",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.user_speed_limit",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.immo_signal_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.read_ecu_version_fota",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.custom_eco_mode",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.geofence_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.followme_status",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.user_profile_id_selection",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.custom_sport_mode",
+        "maxSampleCount" : 1
+      },
+      {
+        "name" : "hmcl.ev.tcu.vcan0.custom_ride_mode",
+        "maxSampleCount" : 1
+      }
+    ]
+  }

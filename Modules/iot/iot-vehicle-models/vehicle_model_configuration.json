@@ -1,0 +1,6 @@
+{
+    "name": "vehicle-model-name",
+    "signalCatalogArn": "signal-catalog-ARN", 
+    "description": "description",
+    "nodes": ["Vehicle.Chassis"]
+}
