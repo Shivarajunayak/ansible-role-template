@@ -1,0 +1,25 @@
+module "opensearch" {
+  source = "./aws-opensearch"
+
+  environment               = try(var.environment, "dev")
+  advanced_options          = try(var.advanced_options, {})
+  advanced_security_options = try(var.advanced_security_options, {})
+  opensearch_secret_name    = try(var.opensearch_secret_name, "")
+  auto_tune_options         = try(var.auto_tune_options, {})
+  cluster_config            = try(var.cluster_config, {})
+  domain_endpoint_options   = try(var.domain_endpoint_options, {})
+  domain_name               = try(var.domain_name, "my-domain")
+  ebs_options               = try(var.ebs_options, {})
+  encrypt_at_rest           = try(var.encrypt_at_rest, {})
+  engine_version            = try(var.engine_version, null)
+  create_access_policy      = try(var.create_access_policy, true)
+  enable_access_policy      = try(var.enable_access_policy, true)
+  create_security_group     = try(var.create_security_group, false)
+  access_policies           = try(var.access_policies, null)
+  access_policy_statements  = try(var.access_policy_statements, {})
+  log_publishing_options    = try(var.log_publishing_options, [])
+  node_to_node_encryption   = try(var.node_to_node_encryption, {})
+  software_update_options   = try(var.software_update_options, {})
+  vpc_options               = try(var.vpc_options, {})
+  tags                      = try(var.tags, {})
+}
