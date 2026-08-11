@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: delete-old-kaniko-pods-script
+  namespace: azure-agent
+data:
+  delete-old-kaniko-pods.sh: |
+    #!/bin/bash
+    chmod +x /scripts/delete-old-kaniko-pods.sh
+    echo "Cleaning Up Failed Pods"
+    kubectl get pods --namespace azure-agent --field-selector=status.phase=Failed | grep 'kaniko' | awk '{print $1}' | xargs kubectl delete pod --namespace azure-agent
+    echo "Cleaning Up Succeeded Pods"
+    kubectl get pods --namespace azure-agent --field-selector=status.phase=Succeeded | grep 'kaniko' | awk '{print $1}' | xargs kubectl delete pod --namespace azure-agent

@@ -1,0 +1,64 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: delete-old-kaniko-pods-cronjob
+  namespace: azure-agent
+spec:
+  schedule: "0 0 * * *"  # Adjust the schedule as needed UTC Time
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: kaniko-pod-cleaner-sa
+          containers:
+          - name: delete-old-kaniko-pods
+            image: bitnami/kubectl:1.31.1
+            env:
+            - name: TZ
+              value: "Asia/Kolkata"
+            command:
+            - "/bin/bash"
+            - "-c"
+            - |
+              cp /scripts/delete-old-kaniko-pods.sh /writable-scripts/delete-old-kaniko-pods.sh
+              chmod +x /writable-scripts/delete-old-kaniko-pods.sh
+              /writable-scripts/delete-old-kaniko-pods.sh
+            volumeMounts:
+            - name: script-volume
+              mountPath: /scripts/delete-old-kaniko-pods.sh
+              subPath: delete-old-kaniko-pods.sh
+            - name: writable-volume
+              mountPath: /writable-scripts
+            securityContext:
+              runAsUser: 1000
+              allowPrivilegeEscalation: false
+              seccompProfile:
+                type: RuntimeDefault
+            resources:
+              requests:
+                cpu: "100m"
+                memory: "100Mi"
+              limits:
+                cpu: "1000m"
+                memory: "1000Mi"
+          restartPolicy: OnFailure
+          volumes:
+          - name: script-volume
+            configMap:
+              name: delete-old-kaniko-pods-script
+          - name: writable-volume
+            emptyDir: {}
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+
+
+
+
+
+
+
+
+
+
+
+
